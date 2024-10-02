@@ -3,7 +3,7 @@ import { useState } from "react";
 import { isValidDate } from "../ValidDate/ValidDate.jsx";
 import { isValidDistance } from "../ValidDistance/ValidDistance.jsx"
 
-export default function AddRecord({ addWorkout }) {
+export default function AddRecord({ addWorkout, updateDistance }) {
     const initialFormState = { id: null, date: "", distance: "" };
     const [workout, setWorkout] = useState(initialFormState);
 
@@ -24,6 +24,7 @@ export default function AddRecord({ addWorkout }) {
         } else {
             setWorkout(initialFormState);
             addWorkout(workout);
+            updateDistance(workout);
         }
     };
 

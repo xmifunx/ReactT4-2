@@ -16,9 +16,21 @@ export default function Steps() {
         setWorkouts(workouts.filter((i) => i.id !== id));
     };
 
+    const updateDistance = (workout) => {
+        const dateIndex = workouts.findIndex(({ date }) => workout.date === date);
+        const existedDate = workouts[dateIndex];
+        const newWorkout = {
+            ...existedDate,
+            distance: Number(existedDate.distance) + Number(workout.distance)
+        };
+        const newWorkouts = [...workouts];
+        newWorkouts[dateIndex] = newWorkout;
+        setWorkouts(newWorkouts);
+    }
+
     return (
         <div className="wrapper">
-            <AddRecord addWorkout={addWorkout} />
+            <AddRecord addWorkout={addWorkout} updateDistance={updateDistance}/>
             <RecordsTable workouts={workouts} deleteWorkout={deleteWorkout} />
         </div>
     )
